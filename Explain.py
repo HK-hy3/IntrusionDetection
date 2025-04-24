@@ -21,7 +21,7 @@ for kernel in kernel_names:
     print(f"\n🔍 SHAP summary for {kernel.upper()} kernel")
 
     # Load model
-    model = joblib.load(f"svm_{kernel}.pkl")
+    model = joblib.load(f"Models/svm_{kernel}.pkl")
 
     # Use SHAP KernelExplainer for SVM
     explainer = shap.KernelExplainer(model.predict, X_train[:100])  # Use a small background set

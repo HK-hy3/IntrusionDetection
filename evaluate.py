@@ -22,6 +22,6 @@ kernels = ["linear", "poly", "rbf", "sigmoid"]
 
 # Evaluate each saved model
 for kernel in kernels:
-    model_path = f"svm_{kernel}_model.pkl"
+    model_path = f"Models\svm_{kernel}_model.pkl"
     model = joblib.load(model_path)
     evaluate_model(kernel, model, X_test, y_test)

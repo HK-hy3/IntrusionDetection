@@ -1,0 +1,66 @@
+Here is a summary of the **SHAP GRAPHS** for each kernel:
+
+**1. Linear Kernel:**
+*Top Influential Features:*
+
+dst_host_count, dst_host_same_srv_rate, dst_host_srv_diff_host_rate, dst_host_rerror_rate, serror_rate
+
+*Interpretation:*
+
+Features like dst_host_count and dst_host_same_srv_rate have a strong influence.
+
+Red dots (high values) on the right indicate that high feature values push the prediction toward "attack", while blue (low values) on the left show they push toward "normal".
+
+The wide spread of SHAP values (x-axis) for these features indicates they significantly affect the model's decision.
+
+**2. Poly Kernel**
+Top Influential Features:
+
+dst_host_same_srv_rate, dst_host_count, rerror_rate, dst_host_srv_serror_rate, srv_serror_rate
+
+*Interpretation:*
+
+The poly kernel picks up complex, nonlinear interactions.
+
+dst_host_same_srv_rate again plays a major role, indicating this feature consistently impacts the prediction across models.
+
+High feature values (red) again shift predictions positively (toward attack), while low values (blue) may reduce the risk score.
+
+**3. RBF Kernel **
+
+
+Top Influential Features:
+
+dst_host_count, dst_host_srv_count, srv_diff_host_rate, flag, protocol_type
+
+*Interpretation:*
+
+RBF focuses on local structure in data and seems to distribute importance across a slightly broader set of features.
+
+While dst_host_count is again top-ranked, features like flag, protocol_type, and src_bytes start playing stronger roles here.
+
+The SHAP values are more concentrated around zero, suggesting the RBF model may make more conservative decisions compared to others.
+
+**4. Sigmoid Kernel:**
+
+
+Top Influential Features:
+
+dst_host_count, dst_host_same_srv_rate, dst_host_srv_diff_host_rate, serror_rate, protocol_type
+
+*Interpretation:*
+
+The sigmoid kernel's behavior lies somewhere between linear and RBF. It still prioritizes dst_host_count and related host-based traffic metrics.
+
+The SHAP values range more widely here (up to ±10), meaning the sigmoid model reacts more sharply to certain features.
+
+protocol_type and srv_diff_host_rate also emerge as significant.
+
+**Conclusion**
+dst_host_count is the most influential feature across all kernels.
+
+Linear and polynomial kernels rely heavily on host-based and connection rate features.
+
+RBF and sigmoid kernels begin to factor in connection details like protocol_type and flag.
+
+The spread of SHAP values gives insight into model sensitivity: sigmoid and poly models are more sensitive than RBF.
